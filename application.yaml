@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-maventesting
+spec:
+  destination:
+    name: ''
+    namespace: root
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: app
+    repoURL: 'https://github.com/KSGA-Autopilot/root-maventesting-cd'
+    targetRevision: HEAD
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+project: default
+source:
+  repoURL: 'https://github.com/KSGA-Autopilot/root-maventesting-cd'
+  path: app
+  targetRevision: HEAD
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: root
+syncPolicy:
+  automated:
+    prune: true
+    selfHeal: true
