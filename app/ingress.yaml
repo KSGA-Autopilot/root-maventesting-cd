@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: root-maventesting-ingress
+  namespace: root
+spec:
+  tls:
+    - hosts:
+        - demo.auto-pilot.dev
+      secretName: demo-auto-pilot-dev-cert
+  rules:
+    - host: demo.auto-pilot.dev
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: root-maventesting-svc
+                port:
+                  number: 8080
