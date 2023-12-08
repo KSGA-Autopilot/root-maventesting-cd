@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: root-maventesting-deployment
+  labels:
+    app: root-maventesting
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: root-maventesting
+  template:
+    metadata:
+      labels:
+        app: root-maventesting
+    spec:
+      containers:
+        - name: root-maventesting
+          image: kshrdautopilot/root-maventesting
+          ports:
+            - containerPort: 8080
